@@ -1,9 +1,10 @@
+import os
 import json
 import redis
 from flask import Flask
 
 app = Flask(__name__)
-r = redis.StrictRedis()
+r = redis.from_url(os.environ.get("REDIS_URL"))
 mydict = {"msg": "Hello World"}
 r.set("db", json.dumps(mydict))
 
